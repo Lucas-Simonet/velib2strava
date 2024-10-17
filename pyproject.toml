@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "velib2strava"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Simonet <simonetdaunizeau.l@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12.4"
+stravalib = "^2.0"
+pydantic = "^2.9.2"
+requests = "^2.32.3"
+gpxpy = "^1.6.2"
+numpy = "^2.1.2"
+selenium = "^4.25.0"
+webdriver-manager = "^4.0.2"
+cloudscraper = "^1.2.71"
+types-requests = "^2.32.0.20240914"
+pathlib = "^1.0.1"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.11.2"
+ruff = "^0.6.9"
+black = "^24.10.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

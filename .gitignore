@@ -1,0 +1,11 @@
+.env
+velib2strava/resource/access_token.json
+velib2strava/resource/run_list.json
+velib2strava/resource/station_information.json
+__pycache__/
+.python-version
+.ruff_cache
+.mypy_cache
+.vscode/
+velib2strava/generated/*
+velib2strava/database/processed_ids.txt
