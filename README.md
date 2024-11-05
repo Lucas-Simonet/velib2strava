@@ -14,7 +14,8 @@ On your first run you will be prompted to connect to a url and copy paste a code
 
 TODO : 
 - automate run retrieval
-- fix activity duration problem
+- fix activity duration vs ellapsed time problem
+    - Runs with low track points in the GPX have the problem, and not the ones with high track points. Strava must think I'm slacking off if I don't have track points.
 - fix uneven speed during activity 
 - enhance alternative route choice
 

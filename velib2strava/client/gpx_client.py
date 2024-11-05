@@ -23,8 +23,11 @@ class GpxClient:
     def create_gpx(
         self, id: str, route_coords: list[list[float]], start_time, end_time
     ) -> None:
+
+        augmented_route_coords = self._augment_route_coords(route_coords)
+
         timestamps = self._get_time_stamps(
-            start_time / 1e3, end_time / 1e3, len(route_coords)
+            start_time / 1e3, end_time / 1e3, len(augmented_route_coords)
         )
 
         gpx = gpxpy.gpx.GPX()
@@ -32,7 +35,7 @@ class GpxClient:
         gpx.tracks.append(gpx_track)
         gpx_segment = gpxpy.gpx.GPXTrackSegment()
         gpx_track.segments.append(gpx_segment)
-        for coord, time in zip(route_coords, timestamps, strict=True):
+        for coord, time in zip(augmented_route_coords, timestamps, strict=True):
             gpx_segment.points.append(
                 gpxpy.gpx.GPXTrackPoint(
                     coord[1], coord[0], time=datetime.fromtimestamp(time)
@@ -48,3 +51,14 @@ class GpxClient:
             start_time, end_time, nb_coord_points, dtype=int
         )
         return time_stamps
+
+    def _augment_route_coords(
+        self, route_coords: list[list[float]]
+    ) -> list[list[float]]:
+        augmented_route_coords: list[list[float]] = []
+        for i in range(len(route_coords) - 1):
+            augmented_route_coords.extend(
+                np.linspace(route_coords[i], route_coords[i + 1], endpoint=False)
+            )
+        augmented_route_coords.append(route_coords[-1])
+        return augmented_route_coords
